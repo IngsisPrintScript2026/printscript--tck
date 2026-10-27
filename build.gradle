@@ -3,7 +3,6 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven {
         name = "GitHubPackages"
@@ -22,19 +21,22 @@ java {
 }
 
 test {
-    minHeapSize = "4m" // initial heap size
-    maxHeapSize = "6m" // maximum heap size
+    minHeapSize = "5m" // initial heap size
+    maxHeapSize = "7m" // maximum heap size
 }
 
+// Newest release of PrintScript in GitHub Packages; pin one with -PprintscriptVersion=<version>
+def printscriptVersion = project.findProperty("printscriptVersion") ?: "latest.release"
+
 dependencies {
-    implementation 'org.example:com.ingsis.engine:1.0-SNAPSHOT'
-    implementation 'org.example:com.ingsis.common:1.0-SNAPSHOT'
-    implementation 'org.example:com.ingsis.charstream:1.0-SNAPSHOT'
-    implementation 'org.example:com.ingsis.lexer:1.0-SNAPSHOT'
-    implementation 'org.example:com.ingsis.parser:1.0-SNAPSHOT'
-    implementation 'org.example:com.ingsis.interpreter:1.0-SNAPSHOT'
-    implementation 'org.example:com.ingsis.formatter:1.0-SNAPSHOT'
-    implementation 'org.example:com.ingsis.sca:1.0-SNAPSHOT'
+    implementation "org.example:com.ingsis.engine:${printscriptVersion}"
+    implementation "org.example:com.ingsis.common:${printscriptVersion}"
+    implementation "org.example:com.ingsis.charstream:${printscriptVersion}"
+    implementation "org.example:com.ingsis.lexer:${printscriptVersion}"
+    implementation "org.example:com.ingsis.parser:${printscriptVersion}"
+    implementation "org.example:com.ingsis.interpreter:${printscriptVersion}"
+    implementation "org.example:com.ingsis.formatter:${printscriptVersion}"
+    implementation "org.example:com.ingsis.sca:${printscriptVersion}"
     testImplementation 'junit:junit:4.13.1'
 }
 
